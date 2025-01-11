@@ -17,3 +17,4 @@ services:
     networks:
       - api_network
     stdin_open: true
+    tty: true

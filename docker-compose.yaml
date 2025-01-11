@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/dockerfile
+      target: DEVELOPMENT
+    environment:
+      TZ: "Asia/Tokyo"
+    env_file:
+      - ./.env
+    ports:
+      - 8888:8888
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - api_network
+    stdin_open: true

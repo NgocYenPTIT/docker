@@ -4,8 +4,9 @@ services:
       context: .
       dockerfile: ./dockerfiles/dockerfile
       target: DEVELOPMENT
+    command: /bin/sh -c "npm install && npm run start:dev"
     environment:
-      TZ: "Asia/Tokyo"
+      TZ: 'Asia/Tokyo'
     env_file:
       - ./.env
     ports:
@@ -17,5 +18,26 @@ services:
       - api_network
     stdin_open: true
     tty: true
+    depends_on:
+      - db
+  db:
+    platform: linux/x86_64
+    image: mysql:8.0
+    ports:
+      - 3310:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'Yenmysql153@'
+      MYSQL_DATABASE: 'database_for_mature'
+      TZ: 'Asia/Tokyo'
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - api_network
+    volumes:
+      - my_volume_for_db:/var/lib/mysql
+      - ./.docker/mysql/conf.d:/etc/mysql/conf.d
+
 networks:
   api_network:
+volumes:
+  my_volume_for_db:

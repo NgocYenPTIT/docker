@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "Running eslint"
+
+(docker compose exec -T api sh -c "npm run lint" && echo "Successfully run eslint with docker") || (npm run lint && echo "Successfully run eslint without docker")

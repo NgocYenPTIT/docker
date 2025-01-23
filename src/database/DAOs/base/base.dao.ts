@@ -1,4 +1,4 @@
-import { BaseEntity } from 'src/database/entities';
+import { BaseEntity } from 'src/database/entities/base/base.entity';
 import { Repository, SelectQueryBuilder } from 'typeorm';
 
 export abstract class BaseDAO<T extends BaseEntity> extends Repository<T> {

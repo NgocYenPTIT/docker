@@ -6,6 +6,7 @@ export class UserService {
   constructor(private readonly userDAO: UserDAO) {}
   async say() {
     console.log(await this.userDAO.findOne({ where: { id: 1 } }));
+
     return 1;
   }
 }

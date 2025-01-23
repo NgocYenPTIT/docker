@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { UserEntity } from '../entities/user.entity';
 import { BaseDAO } from './base/base.dao';
 import { DataSource } from 'typeorm';
 import { InjectDataSource } from '@nestjs/typeorm';
+import { UserEntity } from '../entities';
 
 @Injectable()
 export class UserDAO extends BaseDAO<UserEntity> {

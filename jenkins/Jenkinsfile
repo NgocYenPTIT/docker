@@ -1,0 +1,40 @@
+pipeline{
+    agent any
+
+    environment {
+        IMAGE_NAME = "MY-IMAGE-NAME"
+        CONTAINER_NAME = "MY_CONTAINER_NAME"
+    }
+
+    stages{
+        stage("clone from Repository"){
+            steps{
+                echo "Cloning from Github..."
+            }
+            
+        }
+
+        stage("Build Docker Image"){
+            steps{
+                echo "Building Docker Image......"
+            }
+        }
+
+        stage("Build Docker Image"){
+            steps{
+                echo "Pushing to DockerHub..."
+            }
+        }
+    }
+    post{
+        always{
+            echo "========always========"
+        }
+        success{
+            echo "========pipeline executed successfully ========"
+        }
+        failure{
+            echo "========pipeline execution failed========"
+        }
+    }
+}
